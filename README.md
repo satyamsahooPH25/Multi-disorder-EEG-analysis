@@ -39,12 +39,35 @@ platform. The trained checkpoint at
 `backend/data/checkpoints/hamdnet_latest.pt` is auto-loaded on startup, so
 you do **not** need to re-train to use the app.
 
-> **Note on datasets.** The 4.58 GB of raw EEG (`backend/data/datasets/`)
-> is **not committed to the repository** because it exceeds GitHub's
-> per-push size budget. All three corpora are freely re-downloadable —
-> see the [optional re-train block](#optional--re-train-from-scratch--terminal-a-before-step-1)
-> below for the exact commands. The pre-trained checkpoint is shipped, so
-> you can run the live demo without downloading any datasets.
+> **Datasets are not committed to the repository** (4.58 GB of raw EEG
+> exceeds GitHub's per-push budget). All three corpora are freely
+> re-downloadable in one command — see step **0** below. Without the
+> datasets the backend boots fine, but the live stream subject list
+> comes back empty, so run the dataset setup first.
+
+### 0 · Download the datasets  (one-time, ≈5 GB · ~10 min on a fast link)
+
+```powershell
+cd C:\Users\hp\Desktop\Karma\Temple\backend
+# first run only:
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+pip install openneuro-py requests
+
+# fetch all three EEG corpora in one go (re-runnable; cached files are skipped)
+python -m scripts.setup_datasets
+```
+
+The script ([`backend/scripts/setup_datasets.py`](backend/scripts/setup_datasets.py))
+pulls **OpenNeuro ds004504** (Alzheimer's + FTD + Healthy, 2.7 GB), **OpenNeuro
+ds002778** (Parkinson's UC San Diego, 545 MB), and the **Olejarczyk-Jernajczyk
+RepOD** schizophrenia EEG (250 MB) into `backend/data/datasets/`. Re-running
+is safe — already-downloaded subjects are detected and skipped. Use
+`--only ds004504` or `--skip ds002778` to fetch a subset.
+
+After this completes you'll have 147 subjects available for live playback
+under `/live`.
 
 ### 1 · Backend  (terminal A)
 
@@ -79,16 +102,12 @@ npm run dev
 <http://localhost:3000>  →  pick any subject under **Live stream** →
 **Start stream**.
 
-### Optional · re-train from scratch  (terminal A, before step 1)
+### Optional · re-train from scratch  (after step 0, before step 1)
 
 ```powershell
 cd C:\Users\hp\Desktop\Karma\Temple\backend
 
-# fetch the three real corpora (~5 GB total, one-time)
-pip install openneuro-py requests
-python -m scripts.download_datasets --datasets ds004504
-python -c "import openneuro; openneuro.download(dataset='ds002778', target_dir='./data/datasets/ds002778')"
-python -m scripts.download_schizophrenia
+# (datasets already downloaded by step 0)
 
 # train on CUDA, with early stopping (≈25 min on RTX 4050)
 python -m scripts.train_real --epochs 80 --batch_size 32 --lr 5e-4 `
@@ -341,11 +360,12 @@ Temple/
 │   │   ├── core/                     Application state
 │   │   └── schemas/                  Pydantic request/response models
 │   ├── scripts/
+│   │   ├── setup_datasets.py         ONE-SHOT downloader (run me first)
 │   │   ├── train.py                  CLI training (synthetic)
 │   │   ├── train_real.py             CLI training (real corpora, CUDA)
 │   │   ├── eval_all.py               Subject-level evaluation
-│   │   ├── download_datasets.py      OpenNeuro fetcher
-│   │   └── download_schizophrenia.py RepOD fetcher (Olejarczyk SCZ)
+│   │   ├── download_datasets.py      OpenNeuro fetcher (used by setup_datasets)
+│   │   └── download_schizophrenia.py RepOD fetcher  (used by setup_datasets)
 │   └── data/
 │       ├── checkpoints/              Saved model state dicts
 │       ├── datasets/                 Local copies of ds004504/ds002778/SCZ
