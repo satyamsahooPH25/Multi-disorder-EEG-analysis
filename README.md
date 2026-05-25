@@ -7,11 +7,9 @@ Schizophrenia** — directly from raw scalp EEG, with full live visualisation
 of every preprocessing step, every model attention head, and every
 prediction.
 
-![CognitiveScreen — live analysis surface](docs/images/hero.png)
+<img width="1919" height="1079" alt="Screenshot 2026-05-25 210803" src="https://github.com/user-attachments/assets/dc4a1fff-404a-449d-b467-95c8e36f8d06" />
+<img width="1919" height="1079" alt="Screenshot 2026-05-25 211015" src="https://github.com/user-attachments/assets/4711373e-1c23-4ed2-89bb-80b8ce9e4d80" />
 
-> _Drop your screenshot at `docs/images/hero.png` (see
-> [`docs/images/.gitkeep`](docs/images/.gitkeep) for the full list of
-> placeholders the README expects)._
 
 ---
 
@@ -133,8 +131,8 @@ clinically interpretable, FHIR-encoded report:
   re-reference → z-score → window), so you can see exactly what the
   network sees.
 
-  ![Preprocessing scope](docs/images/preprocessing-scope.png)
-  > _Drop screenshot at `docs/images/preprocessing-scope.png`._
+<img width="1919" height="1079" alt="Screenshot 2026-05-25 211003" src="https://github.com/user-attachments/assets/d81ab908-7956-4d96-8b80-4480bfca170e" />
+
 
 - **Interpretability** — temporal attention heatmap, per-electrode
   importance, topographic band-power maps, per-window probability strip.
@@ -142,8 +140,6 @@ clinically interpretable, FHIR-encoded report:
   accuracy stream in real-time over Server-Sent Events, with
   patience-based early stopping.
 
-  ![Training dashboard](docs/images/training-dashboard.png)
-  > _Drop screenshot at `docs/images/training-dashboard.png`._
 
 - **FHIR R4 DiagnosticReport export** with SNOMED CT codes for all five
   classes — every prediction is one HTTP call away from being ingestible
@@ -170,11 +166,7 @@ The `/architecture` page in the UI renders the full data-flow as an
 interactive Mermaid diagram, with an **info button below it** that expands
 into the per-block math (KaTeX-rendered equations and intuition):
 
-![HAMD-Net architecture diagram](docs/images/architecture-diagram.png)
-> _Drop screenshot at `docs/images/architecture-diagram.png`._
-
-![HAMD-Net mathematical formulation](docs/images/architecture-math.png)
-> _Drop screenshot at `docs/images/architecture-math.png`._
+<img width="1537" height="567" alt="Screenshot 2026-05-26 001830" src="https://github.com/user-attachments/assets/1ccf4a6c-0724-45a7-9953-730624220695" />
 
 ---
 
@@ -201,9 +193,6 @@ a biologically-plausible **synthetic generator**
 simulates the canonical signature of each disorder
 (Alzheimer's slowing, schizophrenia gamma noise, Parkinson's beta
 suppression, etc.).
-
-![Research / dataset page](docs/images/research-page.png)
-> _Drop screenshot at `docs/images/research-page.png`._
 
 ---
 
@@ -285,15 +274,6 @@ Combined real corpus  (147 subjects · .set/.bdf/.edf · 19ch unified 10-20)
 | `/architecture` | Mermaid flow diagram of HAMD-Net + an **i** button that expands the full mathematical formulation (KaTeX equations for every block, plus the training objective and early-stop criterion) |
 | `/train` | Hyperparameter form (CUDA / CPU, real / synthetic source, epochs, patience, min-epochs, …); live training metrics over Server-Sent Events |
 | `/research` | Dataset metadata, download instructions, sample provenance |
-
-![Live stream page](docs/images/live-stream.png)
-> _Drop screenshot at `docs/images/live-stream.png`._
-
-![Probability strip across last 2 minutes](docs/images/probability-strip.png)
-> _Drop screenshot at `docs/images/probability-strip.png`._
-
-![Topographic band-power map](docs/images/topomap.png)
-> _Drop screenshot at `docs/images/topomap.png`._
 
 ---
 
