@@ -39,6 +39,13 @@ platform. The trained checkpoint at
 `backend/data/checkpoints/hamdnet_latest.pt` is auto-loaded on startup, so
 you do **not** need to re-train to use the app.
 
+> **Note on datasets.** The 4.58 GB of raw EEG (`backend/data/datasets/`)
+> is **not committed to the repository** because it exceeds GitHub's
+> per-push size budget. All three corpora are freely re-downloadable —
+> see the [optional re-train block](#optional--re-train-from-scratch--terminal-a-before-step-1)
+> below for the exact commands. The pre-trained checkpoint is shipped, so
+> you can run the live demo without downloading any datasets.
+
 ### 1 · Backend  (terminal A)
 
 ```powershell
