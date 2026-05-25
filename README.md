@@ -166,8 +166,6 @@ The `/architecture` page in the UI renders the full data-flow as an
 interactive Mermaid diagram, with an **info button below it** that expands
 into the per-block math (KaTeX-rendered equations and intuition):
 
-<img width="1537" height="567" alt="Screenshot 2026-05-26 001830" src="https://github.com/user-attachments/assets/1ccf4a6c-0724-45a7-9953-730624220695" />
-
 ---
 
 ## Datasets
