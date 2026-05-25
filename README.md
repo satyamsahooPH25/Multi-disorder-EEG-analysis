@@ -1,4 +1,4 @@
-# Temple · CognitiveScreen
+# CognitiveScreen
 
 **Multi-disorder EEG analysis platform.** A research-grade end-to-end system
 that classifies five neurological / psychiatric conditions —
